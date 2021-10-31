@@ -1,3 +1,4 @@
+#include <bits/stdc++.h>
 #include <cstdio>
 #include <vector>
 #include <algorithm>
@@ -5,6 +6,7 @@
 struct elem{long r,x,c;};
 bool compA(elem a, elem b){return a.r < b.r;}
 bool compB(elem a, elem b){return a.x < b.x;}
+
 
 int main(){
 
