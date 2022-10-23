@@ -1,17 +1,30 @@
-#include <cstdio>
-#include <vector>
-typedef long long ll;
+// C++ program for the above approach
 
+#include <bits/stdc++.h>
+using namespace std;
 
-int main(){
+// Recursive function to find Nth term
+int nthTerm(int N)
+{
+	// Base Case
+	if (N == 1) {
+		return 2;
+	}
 
-    ll n; scanf("%lld", &n);
-    std::vector<ll> a(n + 1), b(n + 1); for(ll p = 1; p <= n; p++){scanf("%lld", &a[p]); b[p] = b[p - 1] + a[p];}
-    ll q; scanf("%lld", &q);
-    while(q--){
-        ll l, r; scanf("%lld %lld", &l, &r);
-        printf("%lld\n", (b[r] - b[l - 1]) / 10);
-    }
-
-    return 0;
+	// Recursive Call according to
+	// Nth term of the series
+	return ((N - 1) * 13)
+		+ nthTerm(N - 1);
 }
+
+// Driver Code
+int main()
+{
+	// Input Nth term
+	int N = 17;
+
+	// Function call
+	cout << nthTerm(N) << endl;
+	return 0;
+}
+
