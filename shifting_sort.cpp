@@ -27,17 +27,27 @@ void factorial(ll mod){
     for(ll i = 2; i < N; i++)
         fact[i] = (fact[i-1] * i) % mod;
 }
- ll power(ll a, ll b, ll mod){
- 	ll x = 1, y = a;
- 	while (b > 0){
- 		if (b%2){
- 			x = (x*y)%mod;
- 		}
- 		y = (y*y)%mod;
- 		b /= 2;
- 	}
- 	return x%mod;
- }
+int power(int x, int y, int p)
+{
+ 
+    // Initialize answer
+    int res = 1;
+ 
+    // Check till the number becomes zero
+    while (y > 0) {
+ 
+        // If y is odd, multiply x with result
+        if (y % 2 == 1)
+            res = (res * x);
+ 
+        // y = y/2
+        y = y >> 1;
+ 
+        // Change x to x^2
+        x = (x * x);
+    }
+    return res % p;
+}
  
 ll modular_inverse(ll n, ll mod){
 	return power(n, mod-2, mod);
