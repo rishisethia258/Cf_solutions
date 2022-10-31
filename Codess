@@ -1,0 +1,90 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define F first
+#define S second
+#define PB push_back
+#define EB emplace_back
+#define MP make_pair
+#define LP1(i,a,b) for(int i=a;i<b;i++)
+#define LP2(i,a,b) for(int i=a;i>=b;i--)
+#define digits(n) ((int)log10l(abs(n))+1)
+#define mod(n) ((int)(n)%1000000007)
+typedef pair<int,int> pi;
+typedef vector<int> vi;
+typedef vector<pi> vpi;
+typedef vector<vi> vvi;
+typedef set<int> si;
+typedef multiset<int> msi;
+typedef unordered_set<int> usi;
+typedef map<int,int> mi;
+typedef unordered_map<int,int> umi;
+typedef multimap<int,int> mmi;
+#define MTS
+
+int check1(double mid,double mid1,double x[],double t[],int n){
+    double ma=0;
+    int in=0;
+    LP1(i,0,n){
+        if(ma<t[i]+abs(x[i]-mid1)){
+            ma=t[i]+abs(x[i]-mid1);
+            in=i;
+        }
+    }
+    if(ma<=mid) return 0;
+    else{
+        if(x[in]-mid1>=0) return 1;
+        return 2; 
+    }
+}
+
+pair<bool,double> check(double mid, double x[],double t[],int n){
+   double mid1,st=0,fi=200000000;
+   while(fi-st>=0.000001){
+    mid1=(st+fi)/2;
+    if(check1(mid,mid1,x,t,n)==0){
+        return MP(true,mid1);
+
+    }
+    else if(check1(mid,mid1,x,t,n)==1)
+    st=mid1;
+    else fi=mid1;
+   }
+   return MP(false,0);
+}
+
+double bin(double x[],double t[],int n){
+    double mid,ans1=0,st=0,fi=200000000;
+    while(fi-st>=0.0000001){
+        mid=(st+fi)/2;
+        if(check(mid,x,t,n).F){
+            fi=mid;
+            ans1=check(mid,x,t,n).S;
+        }
+        else st=mid;
+    }
+    return ans1;
+}
+
+void solve(){
+  int n;cin>>n;
+  double t[n],x[n];
+  LP1(i,0,n) cin>>x[i];
+  LP1(i,0,n) cin>>t[i];
+  if(n==1) cout<<x[0]<<endl;
+  else
+  cout<<bin(x,t,n)<<endl;
+}
+ 
+signed main(){
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
+cout.tie(NULL);
+#ifdef MTS
+    int t;
+    cin>>t;
+    while(t--)
+#endif
+    solve();
+    return 0;
+}
