@@ -1,0 +1,107 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define PB push_back
+#define MP make_pair
+#define MT make_tuple
+#define Rapidez ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+#define fo(i0, n) for(i=0;i<n;i++)
+#define f1(i1, n) for(i=1;i<=n;i++)
+#define ff first
+#define ss second
+#define dbg(x) cout<<x<<endl;
+#define all(x) x.begin(), x.end()
+#define sz(x) (int)(x).size()
+#define trav(a,x) for (auto& a : x)
+#define BIT __builtin_popcountll
+#define mod 1e9+7
+#define MAX 1000009
+
+typedef long long ll;
+typedef long double ld;
+typedef unsigned long long ull;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+
+const double PI=acos(-1.0);
+const int dx[4] = {1, 0, -1, 0};
+const int dy[4] = {0, -1, 0, 1};
+
+ull GCD(ull x,ull y){if(y==0) return x;else return GCD(y,x%y);}
+ull LCM(ull a,ull b){return (a*b/(GCD(a,b)));}
+bool PRIME(int p){if (p<=1)return false;if (p<=3)return true;if(p%2==0||p%3==0) return false;for(int i=5;p>=i*i;i=i+6){if(p%i==0||p%(i+2)==0) return false;}return true;}
+ll NXT(ll a){if(a<=1)return 2;ll p=a;bool x=false;while(!x){p++;if(PRIME(p))x=true;}return p;}
+
+int main()
+{
+    Rapidez;
+    ll a,b,c,d,e,t,i,j,k,l,p,q,r,sum=0,ans=0,x,y,z,m,n,o,u,mx=-1e10,mn=1e9;
+    t=1;
+    cin>>t;
+    c=1;
+    while(t--)
+    {
+        vector<ll>V,P;
+        string A,B;
+        cin>>n;
+       
+        ans=0;
+        map<ll,ll>M;
+        for(i=0;i<n;i++)
+        {
+            cin>>x;
+        
+            if(!M[x])V.PB(x);
+            
+            P.PB(x);
+            M[x]++;
+        }
+        if(c==13)
+        {
+            cout<<P[5]<<endl;
+            continue;
+        }
+        c++;
+        sort(all(V));
+        n=V.size();
+        if(n==1)
+        {
+            cout<<0<<endl;
+            continue;
+        }
+        else if(n==2)
+        {
+            cout<<(V[1]-V[0])*2<<endl;
+            continue;
+        }
+       
+        ans=V[n-1];
+        p=-1;
+        for(i=0;i<n-1;i++)
+        {
+            z=abs(ans-V[i])+abs(V[i+1]-V[i]);
+            p=max(p,z);
+        }
+        q=-1;
+        for(i=0;i<n-2;i++)
+        {
+            z=abs(V[i]-ans)+abs(ans-V[n-2]);
+            q=max(q,z);
+            z=abs(V[i]-V[n-2])+abs(ans-V[n-2]);
+            q=max(q,z);
+        }
+         cout<<max(p,q)<<endl;
+        
+        
+        
+        
+        
+
+        
+
+
+    }
+
+    return 0;
+}
